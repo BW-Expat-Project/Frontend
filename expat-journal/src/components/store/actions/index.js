@@ -19,7 +19,7 @@ export const addData = (data, id) => (dispatch) => {
     axiosWithAuth()
     .post().then(res => {
         dispatch({type: FETCH_POSTS_SUCCESS, payload: res.data})
-    }).catch((err) => dispatch({type: DATA_FAIL, payload: err})).finally(() => window.location = '')
+    }).catch((err) => dispatch({type: DATA_FAIL, payload: err})).finally(() => window.location = '/')
 }
 
 export const editData = (editedData, id) => (dispatch) => {

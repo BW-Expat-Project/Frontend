@@ -1,15 +1,20 @@
 import axios from "axios"
-import {DATA_LOADING, FETCH_DATA_SUCCESS, DELETE_POST, UPDATE_POST, DATA_FAIL } from "../actions"
+import {DATA_LOADING, FETCH_POSTS_SUCCESS, DELETE_POST, UPDATE_POST, DATA_FAIL } from "../actions"
 
 export const initialState = {
     posts: [],
     isLoading: false,
     error: "",
-    postForm: {
+    post: {
         username: "",
-        photo: "",
+        imgUrl: "",
         story: "",
-    }
+    },
+    postForm: {
+        imgUrl: "",
+        story: "",
+    },
+
 }
 
 export const reducer = (state=initialState, action) => {
@@ -20,17 +25,17 @@ export const reducer = (state=initialState, action) => {
                 isLoading: true,
                 error: ''
             }
-        case FETCH_DATA_SUCCESS:
+        case FETCH_POSTS_SUCCESS:
             return {
                 ...state,
-                data: action.payload,
+                posts: action.payload,
                 isLoading: false,
                 error: ''
             }
         case UPDATE_POST:
             return {
                 ...state,
-                data: action.payload,
+                posts: action.payload,
                 isLoading: false,
                 error: ''
             }
@@ -38,7 +43,7 @@ export const reducer = (state=initialState, action) => {
         case DELETE_POST:
             return {
                 ...state,
-                data: state.data.entries.filter(entry => entry.entry_id !== action.payload),
+                posts: state.posts.filter(post => post.post_id !== action.payload),
                 isLoading: false,
                 error: ''
             }
