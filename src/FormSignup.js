@@ -8,7 +8,8 @@ export default function Form() {
     const defaultState= {
         username: "",
         email: "",
-        fullName: "",
+        firstName: "",
+        lastName: "",
         password: "",
         password2: "",
         terms: ""
@@ -19,7 +20,8 @@ export default function Form() {
     const [errors, setErrors] = useState({ 
         username: "",
         email: "",
-        fullName: "",
+        firstName: "",
+        lastName: "",
         password: "",
         password2: "",
         terms: ""
@@ -33,7 +35,7 @@ export default function Form() {
     }
 
     const inputChange = e => {
-        const { checked, value, name, type } = e.target
+        const { value, name, type } = e.target
         const valueToUse = type === 'checkbox' ? e.target.checked : e.target.value;
         setFormErrors(name, valueToUse);
         setFormState({ ...formState, [e.target.name]: value});
@@ -42,7 +44,8 @@ export default function Form() {
     const formSchema = yup.object().shape({
         username: yup.string().required("Username required").min(2, "Username needs to be atleast 2 characters").max(20, "Username can be no more than 20 characters"),
         email: yup.string().required("Email required").email("Invalid email address"),
-        fullName: yup.string().required("Your Name is required").min(2, "Name must be more than 2 characters").max(24, "Name can be no more than 24 characters"),
+        firstName: yup.string().required("Your Name is required").min(2, "Name must be more than 2 characters").max(24, "Name can be no more than 24 characters"),
+        lastName: yup.string().required("Your Name is required").min(2, "Name must be more than 2 characters").max(24, "Name can be no more than 24 characters"),
         password: yup.string().required("Password is required").min(6, "Password should be at least 6 characters"),
         password2: yup.string().oneOf([yup.ref('password'), null], "Passwords must match"),
         terms: yup.boolean().oneOf([true], "Please read and agree to our Terms & Conditions to proceed")
@@ -55,7 +58,7 @@ export default function Form() {
     const formSubmit = e => {
         e.preventDefault();
         console.log("Submitted");
-        AxiosWithAuth().post('/user/user', formState)
+        AxiosWithAuth().post('/users', formState)
         .then(res => history.push("/login"))
         .catch(err => console.log(err))
     };
@@ -93,18 +96,32 @@ export default function Form() {
                     <p>{errors.email}</p>
                 </div>
                 <div className="form-inputs">
-                    <label htmlFor="fullName" className="form-label">
-                        Name
+                    <label htmlFor="firstName" className="form-label">
+                        First Name
                     </label>
                     <input 
-                        id="fullName"
+                        id="firstName"
                         type="text" 
-                        name="fullName"
-                        placeholder="Enter your first name and last name"
-                        value={formState.fullName}
+                        name="firstName"
+                        placeholder="Enter your first name"
+                        value={formState.firstName}
                         onChange={inputChange}
                     />
-                    <p>{errors.fullName}</p>
+                    <p>{errors.firstName}</p>
+                </div>
+                <div className="form-inputs">
+                    <label htmlFor="lastName" className="form-label">
+                        Last Name
+                    </label>
+                    <input 
+                        id="lastName"
+                        type="text" 
+                        name="lastName"
+                        placeholder="Enter your last name"
+                        value={formState.lastName}
+                        onChange={inputChange}
+                    />
+                    <p>{errors.lastName}</p>
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="password" className="form-label">
@@ -147,11 +164,10 @@ export default function Form() {
                     />
                     <p>{errors.terms}</p>
                 </div>
-                <button className="form-input-btn" type="submit" disabled={buttonDisabled}>Create Account</button>
+                <button className="form-input-btn" type="submit">Create Account</button>
                 <small><a href="#">Already have an account?</a></small>
             </form>
         </div>
     )
 }
-
 
