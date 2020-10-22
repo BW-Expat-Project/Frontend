@@ -1,3 +1,11 @@
+html {
+  background: linear-gradient(
+    90deg,
+    rgb(39, 176, 255) 0%,
+    rgb(0, 232, 236) 100%
+  );
+}
+
 .form-container {
   margin: 100px auto;
   width: 1000px;
@@ -9,15 +17,13 @@
   grid-template-columns: 1fr 1fr;
 }
 
-/* .form-content-left {
-  background: linear-gradient(
-    90deg,
-    rgb(39, 176, 255) 0%,
-    rgb(0, 232, 236) 100%
-  );
+.form-content-left {
+  background-image: url(travel-image.jpg);
+  background-repeat: no-repeat;
+  background-size: 125% 100%;
   border-radius: 10px 0 0 10px;
   position: relative;
-} */
+}
 .form-content-right {
   border-radius: 0 10px 10px 0;
   position: relative;
@@ -38,7 +44,7 @@
 }
 
 h1 {
-  font-size: 1rem;
+  font-size: 1.8rem;
   text-align: start;
   width: 80%;
   margin-bottom: 1rem;
@@ -61,7 +67,7 @@ h1 {
   font-size: 0.8rem;
   margin-bottom: 6px;
   color: #fff;
-  padding: 1%;
+  padding: 1% 2%;
 }
 
 .form-input {
@@ -109,4 +115,9 @@ a {
   text-decoration: none;
   color: #27cdff;
   font-weight: 600;
+}
+
+a:hover {
+  color: rgb(255, 153, 102);
+  transition: all 0.3s ease-in-out;
 }
