@@ -41,7 +41,7 @@ const UpdateForm = (props) => {
   return (
     <div>
       <h2>Update Post</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="url"

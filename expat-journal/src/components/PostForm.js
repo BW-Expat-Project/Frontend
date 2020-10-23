@@ -41,7 +41,7 @@ const PostForm = (props) => {
   return (
     <div>
       <h2>Add New Post</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="url"
@@ -54,7 +54,7 @@ const PostForm = (props) => {
           type="text"
           name="title"
           onChange={changeHandler}
-          placeholder="title"
+          placeholder="Title"
           value={item.title}
         />
         <div className="baseline" />
