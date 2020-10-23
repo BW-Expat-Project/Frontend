@@ -7,7 +7,7 @@ const initialItem = {
   title: "",
 };
 
-const PostForm = (props) => {
+const UpdateForm = (props) => {
 //   const history = useHistory();
 //   const { id } = useParams();
   const [item, setItem] = useState(initialItem);
@@ -33,14 +33,14 @@ const PostForm = (props) => {
     e.preventDefault();
 
     axios
-      .post()
+      .put()
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
   };
 
   return (
     <div>
-      <h2>Add New Post</h2>
+      <h2>Update Post</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -54,14 +54,14 @@ const PostForm = (props) => {
           type="text"
           name="title"
           onChange={changeHandler}
-          placeholder="title"
+          placeholder="Title"
           value={item.title}
         />
         <div className="baseline" />
-        <button className="md-button form-button">Add New Post</button>
+        <button className="md-button form-button">Update</button>
       </form>
     </div>
   );
 };
 
-export default PostForm;
+export default UpdateForm;
